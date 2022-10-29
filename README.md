@@ -5,9 +5,17 @@ CrackStation will crack any password up to two characters in length, which (a) m
     
 #  A description of how to use it. 
 
+To add this package:
+
+**import CrackStation**
+
+The decrypt function will decryt the input string which is SHA-1 hash string and will return a plain text password. If password is not found the function will return nil.
+
 <img width="292" alt="image" src="https://user-images.githubusercontent.com/114601219/198856100-c4653ec9-ab2c-4c67-b4c1-823522262267.png">
 
-The decrypt function will decryt the input string which is SHA1 hash string and will return a plain text password. If password is not found the function will return nil.
+Pass the SHA-1 hash string as parameter in decrypt function.
+
+**decrypt(shaHash: "your String")**
     
 #  The version of the latest stable release. 
 `1.0.0`.
