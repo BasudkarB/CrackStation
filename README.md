@@ -4,7 +4,7 @@ CrackStation library cracks the unsalted hashes
 
 ## Overview
 
-CrackStation will crack any password that is up to three characters in length,  matches the regular expression [A-Za-z0-9?!]{1,3} and is encrypted using SHA-1 
+CrackStation will crack any password that is up to three characters in length,  matches the regular expression `[A-Za-z0-9?!]{1,3}` and is encrypted using SHA-1 
 
 ## Mission Statement
 
@@ -27,20 +27,7 @@ Once you have yourswift package set up, add CrackStation to the list of dependen
 The CrackStation constructor:
 
     required public init() {
-        
-        self.lookUPTable = [:]
-        if let path = Bundle.module.url(forResource: "data", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: path)
-                let jsonResult = try JSONSerialization.jsonObject(with: data)
-                if let jsonResult = jsonResult as? [String:String] {
-                    self.lookUPTable = jsonResult
-                }
-            } catch {
-                self.lookUPTable = [:]
-            }
-        }
-        
+        self.lookUPTable = try! JSONSerialization.jsonObject(with: Data(contentsOf: Bundle.module.url(forResource: "data", withExtension: "json")!)) as? [String:String] ?? [:]
     }
     
 The function below returns the plain-text password, if not found the function returns ```nil```.
